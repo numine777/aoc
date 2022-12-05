@@ -38,10 +38,6 @@ impl FromStr for CratePile {
 }
 
 impl CratePile {
-    fn print_piles(&self) {
-        println!("{:?}", self.columns);
-    }
-
     fn print_tops(&self) {
         let mut ans = String::from("");
         for column in &self.columns {
@@ -109,31 +105,17 @@ impl FromStr for Moves {
     }
 }
 
-impl Moves {
-    fn print_move(&self) {
-        println!("{:?}", [self.crates, self.from, self.to]);
-    }
-}
-
 fn main() -> Result<()> {
     let input = std::fs::read_to_string("./input5.prod")?;
 
-    let parsed_one = input.split_once("\n\n").unwrap();
-    let mut crates = parsed_one.0.parse::<CratePile>()?;
-    let moves_one: Vec<Moves> = parsed_one
-        .1
+    let (raw_crates, raw_moves) = input.split_once("\n\n").unwrap();
+    let mut crates = raw_crates.parse::<CratePile>()?;
+    let moves: Vec<Moves> = raw_moves
         .lines()
         .map(|line| line.parse::<Moves>().unwrap())
         .collect();
-    crates.print_piles();
-    for move_one in &moves_one {
-        move_one.print_move();
-    }
-    crates.apply_moves(moves_one);
-    crates.print_piles();
+    crates.apply_moves(moves);
     crates.print_tops();
-
-    // println!("Part one: {:?}", parsed_one);
 
     return Ok(());
 }
