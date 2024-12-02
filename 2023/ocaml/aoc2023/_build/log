@@ -1,0 +1,23 @@
+# dune exec day1
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/scott/.cache/dune/db
+# Workspace root: /Users/scott/personal/aoc/2023/ocaml/aoc2023
+# Auto-detected concurrency: 12
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/Users/scott/personal/aoc/2023/ocaml/aoc2023/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /Users/scott/.opam/default/bin/ocamlc.opt -config > /var/folders/8t/kjmphh_96gg614pxd0kq38gw0000gn/T/dune_71833b_output
