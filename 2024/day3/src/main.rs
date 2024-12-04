@@ -43,8 +43,6 @@ fn part_one(input: &str) -> Result<()> {
                             continue;
                         }
                         if !second_num_str.is_empty() && !first_num_str.is_empty() && curr_char == end {
-                            dbg!(&first_num_str);
-                            dbg!(&second_num_str);
                             let first_num: i64 = first_num_str.parse().unwrap();
                             let second_num: i64 = second_num_str.parse().unwrap();
                             acc += first_num * second_num;
@@ -102,8 +100,6 @@ fn part_two(input: String) -> Result<()> {
                             continue;
                         }
                         if !second_num_str.is_empty() && !first_num_str.is_empty() && curr_char == end {
-                            dbg!(&first_num_str);
-                            dbg!(&second_num_str);
                             let first_num: i64 = first_num_str.parse().unwrap();
                             let second_num: i64 = second_num_str.parse().unwrap();
                             acc += first_num * second_num;
@@ -115,8 +111,6 @@ fn part_two(input: String) -> Result<()> {
 
                 i += j;
             } else if curr == 'd' {
-                dbg!(&line[i..=i+3]);
-                dbg!(&line[i..=i+7]);
                 if &line[i..=i+3] == _do {
                     enabled = true;
                     i += 3;
