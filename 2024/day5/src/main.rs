@@ -8,8 +8,7 @@ fn main() -> Result<()> {
     let (defs, pages) = input.split_once("\n\n").unwrap();
     defs.lines().for_each(|line| {
         if line.contains('|') {
-            let key = line.split_once('|').unwrap().0;
-            let val = line.split_once('|').unwrap().1;
+            let (key, val) = line.split_once('|').unwrap();
             if let Some(val_arr) = rules.get_mut(key) {
                 val_arr.push(val);
             } else {
@@ -59,9 +58,8 @@ fn part_two(rules: &HashMap<&str, Vec<&str>>, pages: &str) -> Result<()> {
         let pages: Vec<&str> = line.split(',').collect();
         let mut seen = vec![pages[0]];
         let mut changes_made = false;
-        for i in 1..pages.len() {
+        pages.iter().skip(1).for_each(|val| {
             let mut rule_broken = false;
-            let val = pages[i];
             if let Some(val_arr) = rules.get(val) {
                 let mut j = 0;
                 while j < seen.len() {
@@ -76,9 +74,9 @@ fn part_two(rules: &HashMap<&str, Vec<&str>>, pages: &str) -> Result<()> {
                 }
             }
             if !rule_broken {
-                seen.push(val)
+                seen.push(val);
             }
-        }
+        });
         if changes_made {
             let mid_seen: u64 = seen[seen.len() / 2].parse().unwrap();
             acc + mid_seen
