@@ -13,6 +13,7 @@ fn main() {
                 .map(|(j, char)| {
                     if char == '^' {
                         start = [i, j];
+                        return 'x';
                     }
                     char
                 })
@@ -24,7 +25,7 @@ fn main() {
 }
 
 fn part_one(board: &mut [Vec<char>], start: &[usize; 2]) {
-    let mut val = 0;
+    let mut val = 1;
     let mut i = start[0];
     let mut j = start[1];
     let mut guard = '^';
