@@ -106,23 +106,23 @@ impl Board {
         }
         let mut i = start[0];
         let mut j = start[1];
-        let mut seen = HashSet::new();
-        self.floor[next[0]][next[1]] = '0';
+        let mut stops = HashSet::new();
+        self.floor[next[0]][next[1]] = '#';
         let mut next_guard = guard.get_next_guard();
         while let Some(char) = self.peek_next([i, j], &next_guard) {
             match char {
-                '#' | '0' => {
-                    next_guard = next_guard.get_next_guard();
+                '#' => {
                     let state = State {
                         pos: [i, j],
                         dir: next_guard.clone(),
                     };
-                    if seen.get(&state).is_some() {
+                    if stops.get(&state).is_some() {
                         ret = Some(next);
                         break;
                     } else {
-                        seen.insert(state);
+                        stops.insert(state);
                     }
+                    next_guard = next_guard.get_next_guard();
                 }
                 's' | '.' | 'x' => {
                     [i, j] = self.step([i, j], &next_guard).unwrap();
